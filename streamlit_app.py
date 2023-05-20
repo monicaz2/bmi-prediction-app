@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.write('Hello world!')
+uploaded_file = None
 
 def main():
     st.title("Monica's BMI Prediction App")
