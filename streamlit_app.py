@@ -7,7 +7,8 @@ def main():
     
     if 'uploaded_file' not in st.session_state or not st.session_state.uploaded_file:
         st.session_state.uploaded_file = st.file_uploader("Upload your image here...", type=['png', 'jpeg', 'jpg'])
-    else:
+    
+    if 'uploaded_file' in st._session_state and st.session_state.uploaded_file:
         st.text("Input Image: ")
         st.image(st.session_state.uploaded_file)
   
