@@ -5,13 +5,11 @@ def main():
     st.text("Welcome to Monica's BMI Prediction Application. It's simple to use!")
     st.text("Just upload a picture of your face and my model will predict your BMI.")
     
-    if 'uploaded_file' not in st.session_state or not st.session_state.uploaded_file:
-        st.session_state.uploaded_file = st.file_uploader("Upload your image here...", type=['png', 'jpeg', 'jpg'])
-        st.text(st.session_state.uploaded_file)
+    uploaded_file = st.file_uploader("Upload your image here...", type=['png', 'jpeg', 'jpg'])
     
-    if 'uploaded_file' in st.session_state and st.session_state.uploaded_file:
-        st.text("Input Image: ")
-        st.image(st.session_state.uploaded_file)
+    if uploaded_file is not None:
+        st.text("Input image: ")
+        st.image(uploaded_file)
   
 
 if __name__ == "__main__":
