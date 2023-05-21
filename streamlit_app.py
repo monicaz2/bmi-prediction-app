@@ -19,7 +19,8 @@ def load_model():
     
 def get_PIL_instance(byteImage):
     bytes_io_image = io.BytesIO(byteImage)
-    return Image.open(bytes_io_image)
+    image = Image.open(bytes_io_image)
+    return image.resize((224, 224))
 
 def get_image_tensor(pil_instance_image):
     img_tensor = image.img_to_array(pil_instance_image)
