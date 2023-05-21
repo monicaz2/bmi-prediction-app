@@ -21,6 +21,8 @@ def main():
     uploaded_file = st.file_uploader("Upload your image here...", type=['png', 'jpeg', 'jpg'])
     
     if uploaded_file is not None:
+        st.text(uploaded_file)
+        st.text(type(uploaded_file))
         st.text("Input image: ")
         st.image(uploaded_file)
   
