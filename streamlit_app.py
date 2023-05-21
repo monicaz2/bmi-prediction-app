@@ -29,6 +29,7 @@ def main():
     if uploaded_file is not None:
         file = uploaded_file.read()
         path = saveImage(file)
+        st.text(path)
         st.text("Input image: ")
         st.image(path)
   
