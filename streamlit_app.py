@@ -21,7 +21,7 @@ def get_PIL_instance(byteImage):
     return Image.open(bytes_io_image)
 
 def get_image_tensor(pil_instance_image):
-    img_tensor = image.img_to_array(pil_image)
+    img_tensor = image.img_to_array(pil_instance_image)
     img_tensor = np.expand_dims(img_tensor, axis=0)
     img_tensor /= 255.
     return img_tensor
