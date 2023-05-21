@@ -1,6 +1,18 @@
 import streamlit as st
 import tensorflow.keras as keras
 
+from tensorflow.keras.models import model_from_json
+
+model_file_path = 'model.json'
+model_weights_file_path = 'model.h5'
+
+@st.cache_resource
+def load_model():
+    with open('model.json', 'r') as f:
+        loaded_model_json = f.read()
+        loaded_model = model_from_json(loaded_model_json)
+        return loaded_model.load_weights(model_weights_file_path)
+
 def main():
     st.title("Monica's BMI Prediction App")
     st.text("Welcome to Monica's BMI Prediction Application. It's simple to use!")
