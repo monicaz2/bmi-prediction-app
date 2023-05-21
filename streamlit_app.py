@@ -8,15 +8,15 @@ from PIL import Image
 from tensorflow.keras.models import model_from_json
 from tensorflow.keras.preprocessing import image
 
-model_file_path = 'model.json'
-model_weights_file_path = 'model.h5'
+model_file_path = 'model2.json'
+model_weights_file_path = 'model2.h5'
 
-@st.cache_resource
 def load_model():
-    with open('model.json', 'r') as f:
+    with open(model_file_path, 'r') as f:
         loaded_model_json = f.read()
         loaded_model = model_from_json(loaded_model_json)
-        return loaded_model.load_weights(model_weights_file_path)
+        loaded_model.load_weights(model_weights_file_path)
+        return loaded_model
     
 def get_PIL_instance(byteImage):
     bytes_io_image = io.BytesIO(byteImage)
@@ -30,6 +30,8 @@ def get_image_tensor(pil_instance_image):
     return img_tensor
 
 def main():
+    model = load_model()
+
     st.title("Monica's BMI Prediction App")
     st.text("Welcome to Monica's BMI Prediction Application. It's simple to use!")
     st.text("Just upload a picture of your face and my model will predict your BMI.")
@@ -45,7 +47,8 @@ def main():
         st.image(pil_image)
         
         with st.spinner("Prediction in Progress..."):
-            time.sleep(3)
+            results = model.predict(tensor_image)
+            st.text(f'The predicted BMI is: {results[0][0]}')
         st.success("Done")
   
 
