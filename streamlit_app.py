@@ -1,6 +1,7 @@
 import io
 import streamlit as st
 import tensorflow.keras as keras
+import numpy as np
 
 from PIL import Image
 from tensorflow.keras.models import model_from_json
