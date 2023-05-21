@@ -1,7 +1,8 @@
 import io
+import numpy as np
 import streamlit as st
 import tensorflow.keras as keras
-import numpy as np
+import time
 
 from PIL import Image
 from tensorflow.keras.models import model_from_json
@@ -42,6 +43,10 @@ def main():
         
         st.text("Input image: ")
         st.image(pil_image)
+        
+        with st.spinner("Prediction in Progress..."):
+            time.sleep(3)
+        st.success("Done")
   
 
 if __name__ == "__main__":
