@@ -1,6 +1,8 @@
+import io
 import streamlit as st
 import tensorflow.keras as keras
 
+from PIL import Image
 from tensorflow.keras.models import model_from_json
 
 model_file_path = 'model.json'
@@ -12,6 +14,10 @@ def load_model():
         loaded_model_json = f.read()
         loaded_model = model_from_json(loaded_model_json)
         return loaded_model.load_weights(model_weights_file_path)
+    
+def saveImage(byteImage):
+    bytes_io_image = io.BytesIO(byteImage)
+    return Image.open(bytes_io_image)
 
 def main():
     st.title("Monica's BMI Prediction App")
@@ -21,10 +27,10 @@ def main():
     uploaded_file = st.file_uploader("Upload your image here...", type=['png', 'jpeg', 'jpg'])
     
     if uploaded_file is not None:
-        st.text(uploaded_file)
-        st.text(type(uploaded_file))
+        file = uploaded_file.read()
+        path = saveImage(file)
         st.text("Input image: ")
-        st.image(uploaded_file)
+        st.image(path)
   
 
 if __name__ == "__main__":
